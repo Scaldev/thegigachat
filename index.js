@@ -1,7 +1,9 @@
-import { createConnection } from 'mysql2';
-import dotenv from 'dotenv';
+import { createConnection } from './node_modules/mysql2';
+import dotenv from './node_modules/dotenv';
 
 dotenv.config();
+
+// what
 
 var connection = createConnection({
     host: process.env.HOST,
