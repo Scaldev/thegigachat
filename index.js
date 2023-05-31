@@ -1,25 +1,25 @@
-import { createConnection } from './node_modules/mysql2';
-import dotenv from './node_modules/dotenv';
+let button = document.getElementById('send');
+button.addEventListener('click', sendData);
 
-dotenv.config();
+const url = 'http://127.0.0.1:5500/index.html';
 
-// what
+function sendData() {
 
-var connection = createConnection({
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE,
-    port: process.env.PORT,
+  let name = document.getElementById('name');
 
-  });
+  fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ "name": name })
+  })
 
-  // simple query
-connection.query(
-    'SHOW DATABASES;',
-    function(err, results, fields) {
-        console.log(err)
-      console.log(results); // results contains rows returned by server
-      console.log(fields); // fields contains extra meta data about results, if available
-    }
-  );
+  .then(response => response.text())
+  .then(html => console.log(html));
+
+}
+
+function sussy() {
+  console.log("sussy baka")
+}
+
+sussy()
